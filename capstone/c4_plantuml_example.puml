@@ -1,0 +1,33 @@
+@startuml C4Model
+!define C4P https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master
+!includeurl C4P/C4_Context.puml
+!includeurl C4P/C4_Container.puml
+
+' System Context diagram
+LAYOUT_WITH_LEGEND()
+Person(user, "End User", "A user of the system")
+System(system, "Service Platform", "Provides core services and AI features")
+
+System_Ext(auth, "Auth Provider", "External identity provider")
+System_Ext(mail, "Email Service", "Third-party email delivery")
+
+Rel(user, system, "Uses")
+Rel(system, auth, "Authenticates with")
+Rel(system, mail, "Sends notifications via")
+
+' Move to Container diagram
+SHOW_LEGEND()
+Container(system, web_app, "Web App", "React", "Frontend SPA for users")
+Container(system, api, "API Service", "FastAPI / Node", "Exposes business logic and APIs")
+Container(system, worker, "Worker", "Python / Celery", "Background tasks, ML orchestration")
+ContainerDb(system, db, "Postgres", "Relational DB", "Persistent storage")
+Container(system, feature_store, "Feature Store", "Redis / Feast", "Feature storage for ML")
+
+Rel(user, web_app, "Uses")
+Rel(web_app, api, "Calls")
+Rel(api, db, "Reads/Writes")
+Rel(api, feature_store, "Reads/Writes features")
+Rel(api, worker, "Enqueues jobs")
+Rel(worker, feature_store, "Reads/Writes features")
+
+@enduml

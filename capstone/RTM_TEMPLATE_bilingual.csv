@@ -1,0 +1,6 @@
+R-ID (معرف المتطلب),Requirement Description (وصف المتطلب),Priority (الأولوية),ADR-ID (معرف ADR),Service/Component (الخدمة/المكوّن),API (spec link) (الواجهة / رابط المواصفة),Test-ID (معرف الاختبار),Owner (المالك),Status (الحالة),Notes (ملاحظات)
+V-01,"Deliver High-Quality Intelligence (Recommendations)",High,ADR-001,Intelligent Service Platform,openapi.yaml#/paths/~1recommendations,test_get_recommendations_success,Jules,Implemented,""
+V-02,"Ensure User Trust through Privacy",High,ADR-001,Intelligent Service Platform,"",,"Jules",Pending,"Further security/privacy layers needed"
+V-03,"Build a Scalable & Maintainable System",Medium,ADR-001,Intelligent Service Platform,"",,"Jules",Implemented,"Monolith first, will monitor scalability"
+S-01,"API Response Time (p99) < 300ms",High,ADR-001,Intelligent Service Platform,openapi.yaml#/paths/~1recommendations,"",Jules,Pending,"Performance tests needed"
+S-02,"System Uptime > 99.9%",High,ADR-001,Intelligent Service Platform,openapi.yaml#/paths/~1health,test_health_check,Jules,Implemented,""

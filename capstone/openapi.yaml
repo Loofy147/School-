@@ -1,0 +1,76 @@
+openapi: 3.0.0
+info:
+  title: Privacy-aware Intelligent Service API
+  description: API for the Privacy-aware Intelligent Service Platform.
+  version: 1.0.0
+
+servers:
+  - url: http://localhost:8000
+    description: Local development server
+
+paths:
+  /recommendations:
+    post:
+      summary: Get personalized recommendations for a user
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RecommendationRequest'
+      responses:
+        '200':
+          description: A list of recommendations
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RecommendationResponse'
+        '400':
+          description: Invalid input
+
+  /health:
+    get:
+      summary: Health check endpoint
+      responses:
+        '200':
+          description: Service is healthy
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: "ok"
+
+components:
+  schemas:
+    RecommendationRequest:
+      type: object
+      properties:
+        user_id:
+          type: string
+          description: The ID of the user to get recommendations for.
+          example: "user-123"
+        context:
+          type: object
+          description: Additional context for the recommendation request.
+          example: {"device": "mobile"}
+      required:
+        - user_id
+
+    RecommendationResponse:
+      type: object
+      properties:
+        user_id:
+          type: string
+          example: "user-123"
+        recommendations:
+          type: array
+          items:
+            type: string
+            example: "item_42"
+        confidence:
+          type: number
+          format: float
+          example: 0.95

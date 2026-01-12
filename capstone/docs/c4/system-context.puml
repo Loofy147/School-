@@ -1,0 +1,20 @@
+@startuml
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Context.puml
+
+title System Context diagram for Privacy-aware Intelligent Service Platform
+' Arabic: مخطط سياق النظام لمنصة خدمية ذكية مهتمة بالخصوصية
+
+LAYOUT_WITH_LEGEND()
+
+Person(user, "User", "A user of the platform.", "مستخدم المنصة")
+System(platform, "Intelligent Service Platform", "The core application.", "التطبيق الأساسي")
+
+System_Ext(analytics, "Analytics Service", "External service for monitoring and analytics.", "خدمة خارجية للمراقبة والتحليلات")
+System_Ext(payment_gateway, "Payment Gateway", "External service for processing payments.", "خدمة خارجية لمعالجة المدفوعات")
+
+
+Rel(user, platform, "Makes API requests", "يقوم بطلبات API")
+Rel(platform, analytics, "Sends metrics and logs", "يرسل المقاييس والسجلات")
+Rel(platform, payment_gateway, "Processes payments", "يعالج المدفوعات")
+
+@enduml

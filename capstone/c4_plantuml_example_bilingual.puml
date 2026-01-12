@@ -1,0 +1,36 @@
+@startuml C4Model
+' C4 PlantUML example (English + Arabic comments)
+' مثال C4 باستخدام PlantUML (إنجليزي + عربي)
+
+!define C4P https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master
+!includeurl C4P/C4_Context.puml
+!includeurl C4P/C4_Container.puml
+
+' System Context diagram / مخطط سياق النظام
+LAYOUT_WITH_LEGEND()
+Person(user, "End User / المستخدم النهائي", "A user of the system / مستخدم للنظام")
+System(system, "Service Platform / منصة الخدمات", "Provides core services and AI features / يوفر خدمات أساسية وميزات الذكاء الاصطناعي")
+
+System_Ext(auth, "Auth Provider / مزوّد الهوية", "External identity provider / مزوّد هوية خارجي")
+System_Ext(mail, "Email Service / خدمة البريد", "Third-party email delivery / إرسال بريد طرف ثالث")
+
+Rel(user, system, "Uses / يستخدم")
+Rel(system, auth, "Authenticates with / يتحقق من الهوية عبر")
+Rel(system, mail, "Sends notifications via / يرسل إشعارات عبر")
+
+' Container diagram / مخطط الحاويات
+SHOW_LEGEND()
+Container(system, web_app, "Web App / واجهة الويب", "React", "Frontend SPA for users / واجهة استخدام مفردة للمستخدمين")
+Container(system, api, "API Service / خدمة الواجهة البرمجية", "FastAPI / Node", "Exposes business logic and APIs / تعرض منطق الأعمال وواجهات برمجية")
+Container(system, worker, "Worker / عامل خلفي", "Python / Celery", "Background tasks, ML orchestration / مهام خلفية، تنظيم نماذج ML")
+ContainerDb(system, db, "Postgres / قاعدة بيانات", "Relational DB / قاعدة بيانات علائقية", "Persistent storage / تخزين دائم")
+Container(system, feature_store, "Feature Store / مخزن السمات", "Redis / Feast", "Feature storage for ML / تخزين سمات للـ ML")
+
+Rel(user, web_app, "Uses / يستخدم")
+Rel(web_app, api, "Calls / يستدعي")
+Rel(api, db, "Reads/Writes / يقرأ/يكتب")
+Rel(api, feature_store, "Reads/Writes features / يقرأ/يكتب سمات")
+Rel(api, worker, "Enqueues jobs / يضيف وظائف إلى الطابور")
+Rel(worker, feature_store, "Reads/Writes features / يقرأ/يكتب سمات")
+
+@enduml

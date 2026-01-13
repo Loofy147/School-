@@ -1,79 +1,86 @@
-# Pact Quickstart - Consumer-Driven Contract Testing
-# دليل سريع لـ Pact - اختبارات العقود من جانب المستهلك
+# Pact Quickstart - Consumer-Driven Contract Testing (Python)
+# دليل سريع لـ Pact - اختبارات العقود من جانب المستهلك (بايثون)
 
 ## Overview / نظرة عامة
-This file contains a minimal consumer test example and provider verification steps using Pact and a Pact Broker.
-يحتوي هذا الملف على مثال اختبار مستهلك بسيط وخطوات التحقق على المزود باستخدام Pact وPact Broker.
+This file contains a minimal consumer test example and provider verification steps using `pact-python`.
+يحتوي هذا الملف على مثال اختبار مستهلك بسيط وخطوات التحقق على المزود باستخدام `pact-python`.
 
-## Consumer test (JavaScript, using @pact-foundation/pact)
-## اختبار المستهلك (جافاسكريبت، باستخدام @pact-foundation/pact)
+## Consumer test (Python, using pact-python)
+## اختبار المستهلك (بايثون، باستخدام pact-python)
 
 Install / تثبيت:
 ```
-npm install --save-dev @pact-foundation/pact node-fetch
+pip install pact-python pytest requests
 ```
 
-Example consumer test (tests/consumer.pact.test.js) / مثال اختبار المستهلك:
-```js
-// ... same consumer test as original (English) ...
-const path = require('path');
-const { Pact } = require('@pact-foundation/pact');
-const fetch = require('node-fetch');
+Example consumer test (`capstone/tests/test_consumer.py`) / مثال اختبار المستهلك:
+```python
+import pytest
+import requests
+from pact import Consumer, Provider, Like
 
-const provider = new Pact({
-  consumer: 'MyConsumer',
-  provider: 'MyProvider',
-  port: 1234,
-  log: path.resolve(process.cwd(), 'logs', 'pact.log'),
-  dir: path.resolve(process.cwd(), 'pacts'),
-  logLevel: 'INFO'
-});
+# Define the Pact consumer and provider
+pact = Consumer('WebFrontend').has_pact_with(Provider('IntelligentService'))
 
-describe('Pact with MyProvider', () => {
-  beforeAll(() => provider.setup());
-  afterAll(() => provider.finalize());
+pact.start_service()
 
-  it('returns user details', async () => {
-    await provider.addInteraction({
-      state: 'user 123 exists',
-      uponReceiving: 'a request for user 123',
-      withRequest: {
-        method: 'GET',
-        path: '/users/123',
-        headers: { Accept: 'application/json' }
-      },
-      willRespondWith: {
-        status: 200,
-        headers: { 'Content-Type': 'application/json' },
-        body: { id: 123, name: 'Alice' }
-      }
-    });
+@pytest.fixture
+def pact_mock_service_url():
+    return pact.uri
 
-    const res = await fetch('http://localhost:1234/users/123', { headers: { Accept: 'application/json' }});
-    const json = await res.json();
-    expect(json.id).toBe(123);
-    expect(json.name).toBe('Alice');
-  });
-});
+def test_get_recommendations_consumer(pact_mock_service_url):
+    expected_request = {
+        'method': 'POST',
+        'path': '/recommendations',
+        'body': {'user_id': 'user-consumer-test', 'context': {}},
+        'headers': {'Content-Type': 'application/json'}
+    }
+    expected_response = {
+        'status': 200,
+        'headers': {'Content-Type': 'application/json'},
+        'body': {
+            'user_id': Like('user-consumer-test'),
+            'recommendations': Like(['item_1', 'item_2']),
+            'confidence': Like(0.85)
+        }
+    }
+
+    (pact
+     .given('a user exists and has recommendations')
+     .upon_receiving('a request for recommendations')
+     .with_request(**expected_request)
+     .will_respond_with(**expected_response))
+
+    with pact:
+        response = requests.post(
+            f"{pact_mock_service_url}/recommendations",
+            json={'user_id': 'user-consumer-test', 'context': {}},
+            headers={'Content-Type': 'application/json'}
+        )
+        assert response.status_code == 200
+
+def pytest_sessionfinish(session, exitstatus):
+    pact.stop_service()
 ```
 
 Run consumer tests to produce `pacts/*.json`.
 شغّل اختبارات المستهلك لإنتاج ملفات `pacts/*.json`.
 
-## Publish to Pact Broker / النشر إلى Pact Broker
-Assuming you have a Pact Broker URL and credentials:
-```
-npx pact-broker publish ./pacts --consumer-app-version $(git rev-parse --short HEAD) --broker-base-url https://your-pact-broker.example --broker-token $PACT_BROKER_TOKEN
-```
-
 ## Provider verification / تحقق المزود
-Provider side can verify published pacts:
-```
-pact-provider-verifier --provider-base-url=http://localhost:8080 --pact-broker-base-url=https://your-pact-broker.example --pact-broker-token=$PACT_BROKER_TOKEN
+The provider (FastAPI service) can verify the published pacts.
+
+Install the verifier / تثبيت أداة التحقق:
+```bash
+pip install pact-python
 ```
 
-## Notes & Links / ملاحظات وروابط
-- Use semantic versioning for consumer app versions when publishing.
-- Consider Pact Broker webhooks for consumer/provider CI orchestration.
-- استخدم الترقيم الدلالي لنسخ تطبيق المستهلك عند النشر.
-- استخدم webhooks في Pact Broker لأتمتة CI بين المستهلك والمزوّد.
+Run verification / تشغيل التحقق:
+```bash
+pact-verifier \\
+  --provider-base-url=http://localhost:8000 \\
+  --pact-file=./capstone/pacts/webfrontend-intelligentservice.json \\
+  --provider-app-version=$(git rev-parse --short HEAD) \\
+  --publish-verification-results
+```
+*Note: You may need to provide Pact Broker details if you are publishing the pacts.*
+*ملاحظة: قد تحتاج إلى توفير تفاصيل Pact Broker إذا كنت تنشر العقود.*

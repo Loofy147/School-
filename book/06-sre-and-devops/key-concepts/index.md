@@ -1,42 +1,22 @@
 # Key Concepts for SRE / DevOps / Observability
 # المفاهيم الأساسية لـ SRE / DevOps / المراقبة
 
-- **CI/CD (Continuous Integration/Continuous Deployment):**
-    - **Continuous Integration (CI):** The practice of frequently merging all developers' code changes into a central repository, after which automated builds and tests are run.
-    - **Continuous Deployment (CD):** The practice of automatically deploying all code changes that pass the CI stage to a production environment.
-- **Infrastructure as Code (IaC):** The process of managing and provisioning infrastructure (networks, virtual machines, load balancers) through machine-readable definition files, rather than physical hardware configuration or interactive configuration tools.
-- **Observability:** The ability to understand the internal state of a system from its external outputs. It is often described with three pillars:
-    - **Metrics:** A numeric representation of data measured over intervals of time (e.g., CPU usage, request latency).
-    - **Logs:** A record of a discrete event that happened at a specific time (e.g., an error message, a user login).
-    - **Traces:** A representation of a single user's journey or request as it flows through all the different services in the system.
-- **SLIs, SLOs, and SLAs:**
-    - **Service Level Indicator (SLI):** A quantitative measure of some aspect of the level of service being provided (e.g., the percentage of requests that complete in under 100ms).
-    - **Service Level Objective (SLO):** A target value or range of values for an SLI. This is an internal goal for the team (e.g., 99.9% of requests will be faster than 100ms).
-    - **Service Level Agreement (SLA):** An explicit, legally-binding contract with a customer that defines the consequences of not meeting the SLOs.
-    - **How to define them:**
-        - **Choose what to measure:** Start by identifying what matters to your users. Is it speed? Availability? Something else?
-        - **Define the SLI:** Create a specific, measurable metric for the user-centric property you chose.
-        - **Set the SLO:** Set a realistic target for your SLI based on user expectations and business needs.
-        - **Establish the SLA:** If necessary, create a formal agreement with your users that defines the consequences of missing the SLO.
-- **Error Budgets:** Derived from SLOs, the error budget is the maximum amount of time a system can be unreliable without violating its SLO. For an SLO of 99.9% uptime, the error budget is 0.1% of the time. This budget empowers the team to take calculated risks with new features.
-- **Runbooks:** A detailed, step-by-step guide for responding to a specific system alert or outage.
+This section covers the core practices for building, deploying, and operating a reliable and efficient system.
 
-- **CI/CD (التكامل المستمر / النشر المستمر):**
-    - **التكامل المستمر (CI):** ممارسة دمج تغييرات كود جميع المطورين بشكل متكرر في مستودع مركزي، وبعد ذلك يتم تشغيل عمليات البناء والاختبارات التلقائية.
-    - **النشر المستمر (CD):** ممارسة النشر التلقائي لجميع تغييرات الكود التي تجتاز مرحلة CI إلى بيئة الإنتاج.
-- **البنية التحتية ككود (IaC):** عملية إدارة وتوفير البنية التحتية (الشبكات، الأجهزة الافتراضية، موازنات التحميل) من خلال ملفات تعريف يمكن قراءتها آليًا، بدلاً من تكوين الأجهزة المادية أو أدوات التكوين التفاعلية.
-- **المراقبة (Observability):** القدرة على فهم الحالة الداخلية للنظام من مخرجاته الخارجية. غالبًا ما يتم وصفها بثلاث ركائز:
-    - **المقاييس (Metrics):** تمثيل رقمي للبيانات يتم قياسه على فترات زمنية (مثل استخدام وحدة المعالجة المركزية، وزمن استجابة الطلب).
-    - **السجلات (Logs):** سجل لحدث منفصل حدث في وقت محدد (مثل رسالة خطأ، وتسجيل دخول مستخدم).
-    - **التتبعات (Traces):** تمثيل لرحلة مستخدم واحد أو طلب أثناء تدفقه عبر جميع الخدمات المختلفة في النظام.
-- **مؤشرات مستوى الخدمة (SLIs)، وأهداف مستوى الخدمة (SLOs)، واتفاقيات مستوى الخدمة (SLAs):**
-    - **مؤشر مستوى الخدمة (SLI):** مقياس كمي لبعض جوانب مستوى الخدمة المقدمة (على سبيل المثال، النسبة المئوية للطلبات التي تكتمل في أقل من 100 مللي ثانية).
-    - **هدف مستوى الخدمة (SLO):** قيمة مستهدفة أو نطاق من القيم لـ SLI. هذا هدف داخلي للفريق (على سبيل المثال، 99.9٪ من الطلبات ستكون أسرع من 100 مللي ثانية).
-    - **اتفاقية مستوى الخدمة (SLA):** عقد صريح وملزم قانونًا مع العميل يحدد عواقب عدم تحقيق أهداف مستوى الخدمة.
-    - **كيفية تحديدها:**
-        - **اختر ما تريد قياسه:** ابدأ بتحديد ما يهم المستخدمين. هل هي السرعة؟ التوفر؟ شيء آخر؟
-        - **حدد SLI:** أنشئ مقياسًا محددًا وقابلًا للقياس للخاصية التي تركز على المستخدم والتي اخترتها.
-        - **حدد SLO:** حدد هدفًا واقعيًا لـ SLI الخاص بك بناءً على توقعات المستخدم واحتياجات العمل.
-        - **أنشئ SLA:** إذا لزم الأمر، قم بإنشاء اتفاقية رسمية مع المستخدمين تحدد عواقب عدم تحقيق SLO.
-- **ميزانيات الخطأ (Error Budgets):** مشتقة من أهداف مستوى الخدمة، وميزانية الخطأ هي أقصى قدر من الوقت يمكن أن يكون فيه النظام غير موثوق به دون انتهاك SLO الخاص به. بالنسبة إلى SLO لوقت تشغيل بنسبة 99.9٪، فإن ميزانية الخطأ هي 0.1٪ من الوقت. تمكّن هذه الميزانية الفريق من المخاطرة المحسوبة بميزات جديدة.
-- **كتيبات التشغيل (Runbooks):** دليل مفصل خطوة بخطوة للاستجابة لتنبيه أو انقطاع معين في النظام.
+- **[CI/CD (Continuous Integration/Continuous Deployment)](./ci-cd/index.md):** Automating the software delivery lifecycle.
+- **[Infrastructure as Code (IaC)](./infrastructure-as-code/index.md):** Managing infrastructure through code.
+- **[Observability](./observability/index.md):** Understanding the internal state of the system.
+- **[SLIs, SLOs, and SLAs](./slis-slos-slas/index.md):** Defining and measuring reliability.
+- **[Error Budgets](./error-budgets/index.md):** Balancing reliability with innovation.
+- **[Runbooks](./runbooks/index.md):** Documenting operational procedures.
+
+---
+
+يغطي هذا القسم الممارسات الأساسية لبناء ونشر وتشغيل نظام موثوق وفعال.
+
+- **[CI/CD (التكامل المستمر / النشر المستمر)](./ci-cd/index.md):** أتمتة دورة حياة تسليم البرامج.
+- **[البنية التحتية ككود (IaC)](./infrastructure-as-code/index.md):** إدارة البنية التحتية من خلال الكود.
+- **[المراقبة](./observability/index.md):** فهم الحالة الداخلية للنظام.
+- **[مؤشرات مستوى الخدمة، وأهداف مستوى الخدمة، واتفاقيات مستوى الخدمة](./slis-slos-slas/index.md):** تحديد وقياس الموثوقية.
+- **[ميزانيات الخطأ](./error-budgets/index.md):** الموازنة بين الموثوقية والابتكار.
+- **[كتيبات التشغيل](./runbooks/index.md):** توثيق الإجراءات التشغيلية.

@@ -16,3 +16,17 @@ In this layer, you will learn about:
 - أنماط مختلفة لدمج الذكاء الاصطناعي في نظامك.
 - كيفية نمذجة تدفق البيانات للتدريب والاستدلال.
 - أهمية وجود استراتيجية واضحة لإدارة وتحديث نماذج الذكاء الاصطناعي الخاصة بك.
+
+### Building a Business Case for AI / بناء حالة عمل للذكاء الاصطناعي
+
+Before investing in AI, it's crucial to build a strong business case that answers the following questions:
+- **What is the problem we are trying to solve?** The problem should be specific and measurable.
+- **How will AI help solve this problem?** Will it increase revenue, reduce costs, or improve the user experience?
+- **How will we measure success?** Define the Key Performance Indicators (KPIs) that will be used to track the project's success.
+
+#### بناء حالة عمل للذكاء الاصطناعي
+
+قبل الاستثمار في الذكاء الاصطناعي، من الضروري بناء حالة عمل قوية تجيب على الأسئلة التالية:
+- **ما هي المشكلة التي نحاول حلها؟** يجب أن تكون المشكلة محددة وقابلة للقياس.
+- **كيف سيساعد الذكاء الاصطناعي في حل هذه المشكلة؟** هل سيزيد الإيرادات أم يقلل التكاليف أم يحسن تجربة المستخدم؟
+- **كيف سنقيس النجاح؟** حدد مؤشرات الأداء الرئيسية (KPIs) التي سيتم استخدامها لتتبع نجاح المشروع.

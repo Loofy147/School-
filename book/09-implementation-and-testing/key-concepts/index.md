@@ -28,18 +28,18 @@ Key principles of clean code include:
 The testing pyramid is a model for structuring your automated tests to provide a good balance of speed, cost, and confidence.
 
 The three layers are:
-1.  **Unit Tests (Base of the pyramid):** These tests check a single, small piece of code (like a function or a class) in isolation. They are fast, cheap to write, and should make up the bulk of your tests.
-2.  **Integration Tests (Middle of the pyramid):** These tests check that multiple components of your system work together correctly. They are slower and more expensive than unit tests.
-3.  **End-to-End (E2E) Tests (Top of the pyramid):** These tests simulate a full user journey through the application. They are slow, brittle, and expensive, so you should have very few of them.
+1.  **Unit Tests (Base of the pyramid):** These tests check a single, small piece of code (like a function or a class) in isolation. They are fast, cheap to write, and should make up the bulk of your tests. For example, testing a function that sorts a list.
+2.  **Integration Tests (Middle of the pyramid):** These tests check that multiple components of your system work together correctly. They are slower and more expensive than unit tests. For example, testing that your API can connect to your database and retrieve data.
+3.  **End-to-End (E2E) Tests (Top of the pyramid):** These tests simulate a full user journey through the application. They are slow, brittle, and expensive, so you should have very few of them. For example, testing that a user can log in, add an item to their cart, and check out.
 
 **Why it matters:** The testing pyramid helps you create a fast, reliable, and cost-effective automated testing strategy.
 
 هرم الاختبار هو نموذج لهيكلة اختباراتك الآلية لتوفير توازن جيد بين السرعة والتكلفة والثقة.
 
 الطبقات الثلاث هي:
-1.  **اختبارات الوحدة (قاعدة الهرم):** تختبر هذه الاختبارات جزءًا صغيرًا واحدًا من الكود (مثل وظيفة أو فئة) بمعزل عن غيره. إنها سريعة ورخيصة في الكتابة، ويجب أن تشكل الجزء الأكبر من اختباراتك.
-2.  **اختبارات التكامل (منتصف الهرم):** تختبر هذه الاختبارات أن مكونات متعددة من نظامك تعمل معًا بشكل صحيح. إنها أبطأ وأكثر تكلفة من اختبارات الوحدة.
-3.  **اختبارات من طرف إلى طرف (E2E) (أعلى الهرم):** تحاكي هذه الاختبارات رحلة مستخدم كاملة عبر التطبيق. إنها بطيئة وهشة ومكلفة، لذلك يجب أن يكون لديك عدد قليل جدًا منها.
+1.  **اختبارات الوحدة (قاعدة الهرم):** تختبر هذه الاختبارات جزءًا صغيرًا واحدًا من الكود (مثل وظيفة أو فئة) بمعزل عن غيره. إنها سريعة ورخيصة في الكتابة، ويجب أن تشكل الجزء الأكبر من اختباراتك. على سبيل المثال، اختبار وظيفة تقوم بفرز قائمة.
+2.  **اختبارات التكامل (منتصف الهرم):** تختبر هذه الاختبارات أن مكونات متعددة من نظامك تعمل معًا بشكل صحيح. إنها أبطأ وأكثر تكلفة من اختبارات الوحدة. على سبيل المثال، اختبار قدرة واجهة برمجة التطبيقات الخاصة بك على الاتصال بقاعدة بياناتك واسترداد البيانات.
+3.  **اختبارات من طرف إلى طرف (E2E) (أعلى الهرم):** تحاكي هذه الاختبارات رحلة مستخدم كاملة عبر التطبيق. إنها بطيئة وهشة ومكلفة، لذلك يجب أن يكون لديك عدد قليل جدًا منها. على سبيل المثال، اختبار قدرة المستخدم على تسجيل الدخول وإضافة عنصر إلى عربة التسوق الخاصة به وتسجيل الخروج.
 
 **لماذا هو مهم:** يساعدك هرم الاختبار على إنشاء استراتيجية اختبار آلية سريعة وموثوقة وفعالة من حيث التكلفة.
 

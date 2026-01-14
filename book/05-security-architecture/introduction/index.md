@@ -8,3 +8,11 @@ Welcome to Layer 5. This layer is responsible for proactively identifying and mi
 A solid security architecture is not an afterthought; it is a fundamental part of the system design. It ensures that data is protected, access is controlled, and the system is resilient to attacks. The goal is to make the cost of a successful attack prohibitively high for any potential adversary.
 
 إن بنية الأمان القوية ليست فكرة لاحقة؛ إنها جزء أساسي من تصميم النظام. تضمن حماية البيانات والتحكم في الوصول ومرونة النظام في مواجهة الهجمات. الهدف هو جعل تكلفة الهجوم الناجح باهظة للغاية لأي خصم محتمل.
+
+### Security as a Culture / الأمن كثقافة
+
+Security is not just the responsibility of the security team. A strong security posture requires a culture where everyone on the team is thinking about security. This includes developers writing secure code, product managers considering the security implications of new features, and SREs building secure infrastructure.
+
+#### الأمن كثقافة
+
+الأمن ليس مسؤولية فريق الأمن فقط. يتطلب الموقف الأمني القوي ثقافة يفكر فيها الجميع في الفريق في الأمن. وهذا يشمل المطورين الذين يكتبون كودًا آمنًا، ومديري المنتجات الذين يفكرون في الآثار الأمنية للميزات الجديدة، ومهندسي SRE الذين يبنون بنية تحتية آمنة.

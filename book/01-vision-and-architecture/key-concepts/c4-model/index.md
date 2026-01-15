@@ -20,3 +20,27 @@ We will explore the four levels of the C4 model in detail:
 - **[المستوى الثاني: الحاويات](./containers/index.md):** تكبير النظام لإظهار اللبنات الفنية عالية المستوى (الخدمات، قواعد البيانات، إلخ).
 - **[المستوى الثالث: المكونات](./components/index.md):** تكبير حاوية لإظهار مكوناتها المنطقية الداخلية.
 - **[المستوى الرابع: الكود](./code/index.md):** (اختياري) تكبير مكون لإظهار تنفيذه على مستوى الكود.
+
+### Practical Example: System Context Diagram / مثال عملي: مخطط سياق النظام
+
+Here is a simple example of a System Context diagram for an "Internet Banking System" created using PlantUML. This diagram shows the system at the center, the users (actors) that interact with it, and the other systems it depends on.
+
+فيما يلي مثال بسيط لمخطط سياق النظام لـ "نظام الخدمات المصرفية عبر الإنترنت" تم إنشاؤه باستخدام PlantUML. يوضح هذا المخطط النظام في المنتصف والمستخدمين (الجهات الفاعلة) الذين يتفاعلون معه والأنظمة الأخرى التي يعتمد عليها.
+
+```plantuml
+@startuml
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Context.puml
+
+Person(customer, "Personal Banking Customer", "A customer of the bank, with personal bank accounts.")
+System(internetBankingSystem, "Internet Banking System", "Allows customers to view information about their bank accounts, and make payments.")
+
+System_Ext(emailSystem, "E-mail System", "The internal Microsoft Exchange e-mail system.")
+System_Ext(mainframe, "Mainframe Banking System", "Stores all of the core banking information about customers, accounts, transactions, etc.")
+
+Rel(customer, internetBankingSystem, "Uses")
+Rel_Back(customer, emailSystem, "Sends e-mails to")
+Rel(internetBankingSystem, emailSystem, "Sends e-mails using")
+Rel(internetBankingSystem, mainframe, "Uses")
+
+@enduml
+```

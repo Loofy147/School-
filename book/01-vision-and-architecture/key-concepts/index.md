@@ -8,6 +8,7 @@ This section dives into the core concepts that form the foundation of our system
 - **[Architecture Decision Records (ADRs)](./adr/index.md):** How do we document our architectural decisions?
 - **[The C4 Model](./c4-model/index.md):** How do we visualize and communicate our architecture?
 - **[Constraints](./constraints/index.md):** What are the boundaries and limitations we must work within?
+- **[System Scope](./system-scope/index.md):** How do we define what is inside and outside our system?
 
 ---
 
@@ -18,3 +19,4 @@ This section dives into the core concepts that form the foundation of our system
 - **[سجلات قرارات الهندسة المعمارية (ADRs)](./adr/index.md):** كيف نوثق قراراتنا المعمارية؟
 - **[نموذج C4](./c4-model/index.md):** كيف نتخيل ونوصل بنيتنا؟
 - **[القيود](./constraints/index.md):** ما هي الحدود والقيود التي يجب أن نعمل ضمنها؟
+- **[نطاق النظام](./system-scope/index.md):** كيف نحدد ما هو داخل وخارج نظامنا؟

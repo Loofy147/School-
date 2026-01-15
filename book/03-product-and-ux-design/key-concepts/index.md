@@ -8,6 +8,7 @@ This section covers the core methodologies for designing and defining a user-cen
 - **[Minimum Viable Product (MVP)](./minimum-viable-product/index.md):** Defining the smallest valuable product.
 - **[Acceptance Criteria](./acceptance-criteria/index.md):** Formalizing the requirements for completion.
 - **[End-to-End Scenarios](./end-to-end-scenarios/index.md):** Describing a complete user workflow.
+- **[Personas](./personas/index.md):** Creating fictional characters to represent user types.
 
 ---
 
@@ -18,3 +19,4 @@ This section covers the core methodologies for designing and defining a user-cen
 - **[الحد الأدنى من المنتج القابل للتطبيق (MVP)](./minimum-viable-product/index.md):** تحديد أصغر منتج ذي قيمة.
 - **[معايير القبول](./acceptance-criteria/index.md):** إضفاء الطابع الرسمي على متطلبات الإنجاز.
 - **[سيناريوهات شاملة](./end-to-end-scenarios/index.md):** وصف سير عمل مستخدم كامل.
+- **[الشخصيات](./personas/index.md):** إنشاء شخصيات خيالية لتمثيل أنواع المستخدمين.

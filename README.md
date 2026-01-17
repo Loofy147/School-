@@ -244,7 +244,7 @@ school-book/
 ### Quick Start
 ```bash
 # Clone the repository
-git clone [repository-url]
+git clone https://github.com/jules-dot-ai/school-book
 cd school-book
 
 # Install dependencies
@@ -310,14 +310,14 @@ We welcome contributions! Please see [CONTRIBUTING.md](CONTRIBUTING.md) for guid
 
 ## License / الترخيص
 
-This educational resource is provided under [LICENSE] for academic and learning purposes.
+This educational resource is provided under the [LICENSE](LICENSE) for academic and learning purposes.
 
 ## Support / الدعم
 
 - Documentation: [docs/](docs/)
 - Issues: GitHub Issues
 - Discussions: GitHub Discussions
-- Office Hours: [Schedule]
+- Office Hours: TBD
 
 ## Acknowledgments / شكر وتقدير
 
@@ -332,6 +332,6 @@ This methodology draws from industry best practices including:
 
 **Version:** 2.0.0
 **Last Updated:** 2024-01-15
-**Maintainers:** [Names]
+**Maintainers:** Jules, The AI Engineer
 
 جميع الحقوق محفوظة © 2024
